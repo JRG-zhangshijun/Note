@@ -10,9 +10,10 @@
       </div>
     </div>
     <div class="list-group">
-      <ul class="list-group-item" >
+      <ul class="list-group-item">
         <li v-for="item in notes" :class="{activeNoteColor: getActiveNote === item}" @click="setActiveNote(item)">
-          {{item.title}}
+          {{item.title.substr(0, 30)}}
+          {{item.time}}
         </li>
       </ul>
     </div>
@@ -20,22 +21,21 @@
 </template>
 
 <script type="text/ecmascript-6">
+
   export default {
     name: 'NoteEditor',
-    components: {
-    },
     computed: {
       notes() {
         if (this.showClass === 'all') {
           return this.$store.state.notes
-        }else if(this.showClass === 'favorite'){
+        } else if (this.showClass === 'favorite') {
           return this.$store.state.notes.filter(note => note.favorite)
         }
       },
-      showClass(){
-          return this.$store.state.show
+      showClass() {
+        return this.$store.state.show
       },
-      getActiveNote(){
+      getActiveNote() {
         return this.$store.state.activeNote
       }
     },
@@ -43,9 +43,9 @@
       allOrFavorite(show) {
         this.$store.commit('AllOrFavorite', show)
       },
-      setActiveNote(note){
+      setActiveNote(note) {
         this.$store.commit('SetActiveNote', note)
-      },
+      }
     }
   }
 </script>
@@ -82,7 +82,9 @@
       > .list-group-item {
         background: white;
         > li {
-          height: 40px;
+          /*display: flex;*/
+          /*justify-content: space-around;*/
+          overflow: hidden;
           width: 300px;
           padding: 0 20px;
           font-size: 20px;
@@ -90,12 +92,13 @@
           cursor: pointer;
         }
         :hover {
-          background: #F5F5F5;
+        background: #F5F5F5;
         }
       }
     }
   }
-  .activeNoteColor{
+
+  .activeNoteColor {
     background: #337AB7 !important;
     color: white;
   }

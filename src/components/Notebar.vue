@@ -1,6 +1,6 @@
 <template>
   <div id="notebar">
-    <a href="#" class="iconfont" @click="newNote">&#xe669;</a>
+    <a href="#" class="iconfont" @click="newNote(),createTime()">&#xe669;</a>
     <a href="#" class="iconfont" @click="toggleFavorite" :class="{activeIcon: selected}">&#xe601;</a>
     <a href="#" class="iconfont" @click="deleteNote">&#xe50f;</a>
   </div>
@@ -25,6 +25,9 @@
       },
       toggleFavorite() {
         this.$store.commit('ToggleFavorite')
+      },
+      createTime() {
+        this.$store.commit('CreateTime')
       }
     }
   }

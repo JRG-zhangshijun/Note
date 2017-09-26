@@ -1,7 +1,7 @@
 <template>
   <div id="note-preview">
     <div class="bg">
-      <input type="text" :value="activeNote.title" class="title" @input="editNoteTitle" placeholder="请输入标题...">
+      <input type="text" :value="activeNote.title" class="title" @input="editNoteTitle">
       <textarea class="content" :value="activeNote.content" @input="editNoteContent" placeholder="请输入正文..."></textarea>
     </div>
   </div>
